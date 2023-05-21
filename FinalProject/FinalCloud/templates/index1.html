@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Weather App</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="current-info">
+            
+
+            <div class="date-container">
+                <div class="time" id="time">
+                    {{ datetime }} <span id="am-pm"></span>
+                </div>
+                <div class="date" id="date">
+                    {{ date }}
+                </div>
+                
+                <form class="searchbox" name="search" action="/sendata"method="post">
+                    <input type="search" name="cityname" placeholder="Search" />
+                    <button type="submit" value="search">&nbsp;</button>
+                </form>
+
+                <div class="others" id="current-weather-items">
+                    <div class="weather-item">
+                        <div>Humidity</div>
+                        <div>{{ humidity }}%</div>
+                    </div>
+                    <div class="weather-item">
+                        <div>Pressure</div>
+                        <div>{{pressure}} hPa</div>
+                    </div>
+                    <div class="weather-item">
+                        <div>Wind Speed</div>
+                        <div>{{windspeed}} km/h</div>
+                    </div>
+
+                    <div class="weather-item">
+                        <div>Temperature</div>
+                        <div>{{temp}} - {{temp_feellike}}</div>
+                    </div>
+                   
+
+                    <div class="weather-item">
+                        <div>Sunrise</div>
+                        <div>{{sunrise}}</div>
+                    </div>
+                    <div class="weather-item">
+                        <div>Sunset</div>
+                        <div>{{sunset}}</div>
+                    </div>        
+                </div>
+            </div>
+
+            <div class="place-container">
+                <div class="time-zone" id="time-zone">{{position}}</div>              
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="future-forecast">
+        <div class="today" id="current-temp">
+            <img src="http://openweathermap.org/img/wn/{{ data_daily[0]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+            <div class="other">
+                <div class="day">{{ data_daily[0]["dt"] }}</div>
+
+                <div class="temp">Night - {{ data_daily[0]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[0]["temp"]["night"] }}&#176; C</div>
+            </div>
+        </div>
+
+        <div class="weather-forecast" id="weather-forecast">
+            <div class="weather-forecast-item">
+                <div class="day">{{ data_daily[1]["dt"] }}</div>
+
+                <img src="http://openweathermap.org/img/wn/{{ data_daily[1]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - {{ data_daily[1]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[1]["temp"]["night"] }}&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">{{ data_daily[2]["dt"] }}</div>
+
+                <img src="http://openweathermap.org/img/wn/{{ data_daily[2]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - {{ data_daily[2]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[2]["temp"]["night"] }}&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">{{ data_daily[3]["dt"] }}</div>
+
+                <img src="http://openweathermap.org/img/wn/{{ data_daily[3]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - {{ data_daily[3]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[3]["temp"]["night"] }}&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">{{ data_daily[4]["dt"] }}</div>
+
+                <img src="http://openweathermap.org/img/wn/{{ data_daily[4]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - {{ data_daily[4]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[4]["temp"]["night"] }}&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">{{ data_daily[5]["dt"] }}</div>
+
+                <img src="http://openweathermap.org/img/wn/{{ data_daily[5]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - {{ data_daily[5]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[5]["temp"]["night"] }}&#176; C</div>
+            </div>
+
+            <div class="weather-forecast-item">
+                <div class="day">{{ data_daily[6]["dt"] }}</div>
+                
+                <img src="http://openweathermap.org/img/wn/{{ data_daily[6]['weather'][0]['icon'] }}@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Night - {{ data_daily[6]["temp"]["day"] }}&#176; C</div>
+                <div class="temp">Day - {{ data_daily[6]["temp"]["night"] }}&#176; C</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+</body>
+</html>

@@ -1,0 +1,9 @@
+---
+applications:
+- name: myapp
+  routes:
+    - route: python-weatherapp.cfapps.ap21.hana.ondemand.com
+  path: ./
+  memory: 128M
+  buildpack: python_buildpack
+  command: python server.py

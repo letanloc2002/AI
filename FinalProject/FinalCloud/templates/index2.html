@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="current-info">
+            
+            <div class="date-container">
+                <div class="time" id="time">
+                    {{ datetime }} <span id="am-pm"></span>
+                </div>
+                <div class="date" id="date">
+                    {{ date }}
+                </div>
+                
+                
+                <form class="searchbox" name="search" action="/sendata"method="POST">
+                    <input type="search" name="cityname" placeholder="Search" />
+                    <button type="submit" value="search">&nbsp;</button>
+
+                </form>
+            
+            </div>
+
+            <div class="place-container">
+                <div class="time-zone" id="time-zone">{{position}}</div>              
+            </div>
+        </div>
+        <div class="current-info">
+            <div class="row2">
+                <div>
+                    
+                    
+                    <div class="today" id="current-temp">
+    
+                        <div class="other">
+                            <div class="day">Today</div>
+                        
+                        </div>
+                    </div>
+        
+                    
+                    
+                    <div class="others" id="current-weather-items">
+                    
+                        <div class="weather-item">
+                            <div>Humidity</div>
+                            <div>{{ humidity }}%</div>
+                        </div>
+                        <div class="weather-item">
+                            <div>Pressure</div>
+                            <div>{{pressure}} hPa</div>
+                        </div>
+                        <div class="weather-item">
+                            <div>Wind Speed</div>
+                            <div>{{windspeed}} km/h</div>
+                        </div>
+    
+                        <div class="weather-item">
+                            <div>Temperature</div>
+                            <div>{{temp}} - {{temp_feellike}}</div>
+                        </div>
+                    
+    
+                        <div class="weather-item">
+                            <div>Sunrise</div>
+                            <div>{{sunrise}}</div>
+                        </div>
+                        <div class="weather-item">
+                            <div>Sunset</div>
+                            <div>{{sunset}}</div>
+                        </div>        
+                    </div>
+                </div>
+                <div class="haongu">
+                    <div class="today" id="current-temp">
+
+                        <div class="other">
+                           
+                            <div class="day">Tomorrow</div>
+                            <img src={{img}} alt="weather icon" class="w-icon" width=450 height=450>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+</body>
+</html>
